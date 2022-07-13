@@ -62,7 +62,6 @@ router.post("/signup/create/:id", store.single("profile"), async (req, res) => {
 
     if (!user) res.status(404).send();
     else res.status(201).send(user);
-    // res.status(201).send(user)
   } catch (e) {
     res.status(400).send("Error" + e);
   }
@@ -72,7 +71,7 @@ router.post("/update/:id", async (req, res) => {
   try {
     const _id = req.params.id;
     const updates = Object.keys(req.body);
-    console.log(req.body["role"]);
+    console.log(req.body);
     const user = await User.findById(_id);
     updates.forEach((key) => {
       const val = req.body[key];
@@ -134,9 +133,11 @@ router.get("/login/:id", async (req, res) => {
     const users = await User.find({
       role: { $in: [user.required_role, "FullStack Development"] },
     });
+    // main logic
     const x = users.filter((val) => {
       const val_id = val._id;
-      return !user.liked[val_id] && val_id != _id;
+      return val_id !== _id;
+      // return !user.liked[val_id] && val_id != _id;
     });
 
     res.status(200).send(x);

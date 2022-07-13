@@ -23,7 +23,7 @@ function App() {
   const id = localStorage.getItem("id");
   // const { innerWidth: width, innerHeight: height } = window;
   useEffect(() => {
-    console.log(id);
+    console.log("id", id);
     axios.get("/messages/all").then((response) => {
       setMessages(response.data);
     });

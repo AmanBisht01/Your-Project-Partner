@@ -28,7 +28,7 @@ const CreateForm = () => {
     skills: "",
     required_role: "",
     username: "",
-    // profile:""
+    profile: "",
   });
   const profile_update = (e) => {
     setProfile(e.target.files[0]);
@@ -64,9 +64,9 @@ const CreateForm = () => {
         console.log("Inside Signup" + user);
       } else {
         const user = await axios.post(`/update/${id}`, details);
-        console.log("Inside Update" + user.data);
+        console.log("Inside Update" + user);
       }
-      // console.log(formData)
+      console.log(formData);
 
       setDetails({
         role: "",

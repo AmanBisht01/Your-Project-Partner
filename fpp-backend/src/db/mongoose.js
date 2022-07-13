@@ -19,10 +19,6 @@ mongoose
 const db = mongoose.connection;
 
 const pusher = new Pusher({
-  // appId: "1266900",
-  // key: "6919e4670960d89aa54b",
-  // secret: "c4c0ee5a6b76e429240b",
-  // cluster: "ap2",
   app_id: "1436320",
   key: "c9249c74c1e2d754473f",
   secret: "32434326c3beebecd763",
