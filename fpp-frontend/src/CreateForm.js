@@ -2,10 +2,10 @@ import axios from "./axios";
 import React, { useState, useEffect } from "react";
 import "./CreateForm.css";
 import { Avatar } from "@material-ui/core";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 const CreateForm = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const id = localStorage.getItem("id");
   const [userprofile, setUserprofile] = useState({});
   useEffect(() => {

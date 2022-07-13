@@ -4,7 +4,7 @@ import { Avatar } from "@material-ui/core";
 import TinderCard from "react-tinder-card";
 import wait from "./image/wait.png";
 import axios from "./axios";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 const Card = () => {
   const [cards, setCards] = useState([]);
@@ -14,7 +14,7 @@ const Card = () => {
   // const [liked,setLiked]=useState([]);
   const _id = localStorage.getItem("id");
   console.log(_id);
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     if (_id) {

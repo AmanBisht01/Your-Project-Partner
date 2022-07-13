@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
 import Card from "./Card";
@@ -8,20 +8,13 @@ import Login from "./Login";
 import HeaderLogin from "./HeaderLogin";
 import CreateForm from "./CreateForm";
 import Pusher from "pusher-js";
-import {
-  BrowserRouter as Router,
-  Switch,
-  useHistory,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "./axios";
 import Profile from "./Profile";
 
 function App() {
   const [messages, setMessages] = useState([]);
   const id = localStorage.getItem("id");
-  // const { innerWidth: width, innerHeight: height } = window;
   useEffect(() => {
     console.log("id", id);
     axios.get("/messages/all").then((response) => {
@@ -59,67 +52,112 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/signup/create">
-          <div className="body-form">
-            <HeaderLogin />
-            <CreateForm />
-          </div>
-        </Route>
+      <Routes>
+        <Route
+          exact
+          path="/signup/create"
+          element={
+            <Fragment>
+              {" "}
+              <div className="body-form">
+                <HeaderLogin />
+                <CreateForm />
+              </div>
+            </Fragment>
+          }
+        />
 
-        <Route path="/profile">
-          <Header />
-          <Profile />
-        </Route>
+        <Route
+          exact
+          path="/profile"
+          element={
+            <Fragment>
+              <Header />
+              <Profile />
+            </Fragment>
+          }
+        />
 
-        <Route path="/login">
-          <HeaderLogin />
-          <Login choice="login" />
-        </Route>
+        <Route
+          exact
+          path="/login"
+          elements={
+            <Fragment>
+              <HeaderLogin />
+              <Login choice="login" />
+            </Fragment>
+          }
+        />
 
-        <Route path="/signup">
-          <HeaderLogin />
-          <Login choice="signup" />
-        </Route>
+        {/* </Route> */}
 
-        <Route path="/chat/:roomId">
-          {isDesktop ? (
-            <>
+        <Route
+          exact
+          path="/signup"
+          element={
+            <Fragment>
+              {" "}
+              <HeaderLogin />
+              <Login choice="signup" />
+            </Fragment>
+          }
+        />
+
+        <Route
+          exact
+          path="/chat/:roomId"
+          element={
+            <Fragment>
+              {isDesktop ? (
+                <>
+                  <Header backpath="/" />
+                  <div className="app">
+                    <div className="app_body">
+                      <Chats />
+                      <Chatscreen messages={messages} />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Header backpath="/chat" />
+                  <div className="app">
+                    <div className="app_body">
+                      <Chatscreen messages={messages} />
+                    </div>
+                  </div>
+                </>
+              )}
+            </Fragment>
+          }
+        />
+
+        <Route
+          exact
+          path="/chat"
+          element={
+            <Fragment>
               <Header backpath="/" />
               <div className="app">
                 <div className="app_body">
                   <Chats />
-                  <Chatscreen messages={messages} />
+                  {isDesktop ? <div className="nochat"></div> : <></>}
                 </div>
               </div>
-            </>
-          ) : (
-            <>
-              <Header backpath="/chat" />
-              <div className="app">
-                <div className="app_body">
-                  <Chatscreen messages={messages} />
-                </div>
-              </div>
-            </>
-          )}
-        </Route>
-
-        <Route path="/chat">
-          <Header backpath="/" />
-          <div className="app">
-            <div className="app_body">
-              <Chats />
-              {isDesktop ? <div className="nochat"></div> : <></>}
-            </div>
-          </div>
-        </Route>
-
-        <Route path="/">
-          <Header />
-          <Card />
-        </Route>
-      </Switch>
+            </Fragment>
+          }
+        />
+        <Route
+          exact
+          path="/"
+          element={
+            <Fragment>
+              <Header />
+              <Card />
+            </Fragment>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
