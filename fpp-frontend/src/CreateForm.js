@@ -12,14 +12,14 @@ const CreateForm = () => {
     axios
       .get(`/profile/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res.data);
         setUserprofile(res.data);
       })
       .catch((e) => {
         console.log("Error at Form" + e);
       });
   }, []);
-
+  // console.log(userprofile.role);
   const [profile, setProfile] = useState("");
 
   const [details, setDetails] = useState({
@@ -30,13 +30,13 @@ const CreateForm = () => {
     username: "",
     profile: "",
   });
+  console.log(details);
   const profile_update = (e) => {
     setProfile(e.target.files[0]);
     console.log(e.target.files[0]);
   };
   const update = (e) => {
     const { name, value } = e.target;
-
     setDetails((prevState) => ({
       ...prevState,
       [name]: value,
@@ -46,11 +46,14 @@ const CreateForm = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
+
       formData.append("role", details.role);
       formData.append("qualification", details.qualification);
       formData.append("skills", details.skills);
       formData.append("username", details.username);
       formData.append("required_role", details.required_role);
+      // formData.append("profile", profile);
+      // console.log(formData.role);
       if (profile !== "") {
         formData.append("profile", profile);
       } else {
@@ -74,9 +77,10 @@ const CreateForm = () => {
         skills: "",
         required_role: "",
         username: "",
+        profile: "",
       });
       setProfile("");
-      history.push("/profile");
+      history("/profile");
     } catch (error) {
       console.log("Error " + error);
     }
@@ -97,7 +101,7 @@ const CreateForm = () => {
             <label htmlFor="files">
               <Avatar
                 src={`${process.env.PUBLIC_URL}/uploads/${userprofile.profile}`}
-                alt="Select profile"
+                alt="+"
                 id="profile-avatar"
               />
             </label>

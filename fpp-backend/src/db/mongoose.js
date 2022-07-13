@@ -23,7 +23,7 @@ const pusher = new Pusher({
   key: "c9249c74c1e2d754473f",
   secret: "32434326c3beebecd763",
   cluster: "mt1",
-  useTLS: true,
+  // useTLS: true,
 });
 
 db.once("open", () => {

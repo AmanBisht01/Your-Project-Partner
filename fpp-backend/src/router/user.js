@@ -45,7 +45,7 @@ router.post("/signup/create/:id", store.single("profile"), async (req, res) => {
   try {
     const _id = req.params.id;
     const updates = Object.keys(req.body);
-    console.log(req.file["filename"]);
+    console.log("line 48 user.js ", req.file["filename"]);
     const user = await User.findById(_id);
     updates.forEach((key) => {
       const val = req.body[key];
@@ -63,7 +63,7 @@ router.post("/signup/create/:id", store.single("profile"), async (req, res) => {
     if (!user) res.status(404).send();
     else res.status(201).send(user);
   } catch (e) {
-    res.status(400).send("Error" + e);
+    res.status(400).send("Error d" + e);
   }
 });
 // ---------------------------------------update--------------------------------------------------//

@@ -30,7 +30,7 @@ const Profile = () => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
-    history.push("/login");
+    history("/login");
   };
   return (
     <>
@@ -91,7 +91,7 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        history.push("/login")
+        history("/login")
       )}
     </>
   );

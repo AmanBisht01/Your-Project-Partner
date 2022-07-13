@@ -28,7 +28,7 @@ const Card = () => {
           console.log("Error" + e);
         });
     } else {
-      history.push("/login");
+      history("/login");
     }
 
     //123
@@ -100,7 +100,7 @@ const Card = () => {
                   <div class="card_skills">
                     <h5>Skills</h5>
                     <ul>
-                      {val.skills.split(",").map((skill) => (
+                      {val.skills?.split(",").map((skill) => (
                         <li>{skill}</li>
                       ))}
                     </ul>

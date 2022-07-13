@@ -32,7 +32,7 @@ const Login = ({ choice }) => {
       console.log(user);
       localStorage.setItem("id", `${res.data._id}`);
 
-      history.push("/");
+      history("/");
       console.log("Logged in");
     } catch (e) {
       setEmail("");
@@ -56,7 +56,7 @@ const Login = ({ choice }) => {
       setPassword("");
       setName("");
       localStorage.setItem("id", `${user.data._id}`);
-      history.push("/signup/create");
+      history("/signup/create");
     } catch (e) {
       document.getElementsByClassName("invalid_id")[0].style.display = "block";
       console.log("Error in sugnup" + e);
