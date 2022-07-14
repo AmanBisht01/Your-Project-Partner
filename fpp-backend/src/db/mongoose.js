@@ -1,16 +1,12 @@
 import mongoose from "mongoose";
 import Pusher from "pusher";
 
-// dJejmIH7MgH31nwE
-
 const mongoUrl =
   "mongodb+srv://aman:aman@cluster0.v3g1r.mongodb.net/FPP?retryWrites=true&w=majority";
-
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // unhandledrejections: strict,
   })
   .catch((e) => {
     console.log("Error " + e);
@@ -19,11 +15,11 @@ mongoose
 const db = mongoose.connection;
 
 const pusher = new Pusher({
-  app_id: "1436320",
-  key: "c9249c74c1e2d754473f",
-  secret: "32434326c3beebecd763",
+  appId: "1437079",
+  key: "63390f503a0e27874464",
+  secret: "52351d8662222db362a5",
   cluster: "mt1",
-  // useTLS: true,
+  useTLS: true,
 });
 
 db.once("open", () => {

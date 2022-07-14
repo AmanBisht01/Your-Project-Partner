@@ -34,13 +34,13 @@ function App() {
   });
   useEffect(() => {
     console.log("Invoked ");
-    const pusher = new Pusher("c9249c74c1e2d754473f", {
+    const pusher = new Pusher("63390f503a0e27874464", {
       cluster: "mt1",
     });
 
     const channel = pusher.subscribe("messages");
     channel.bind("inserted", (data) => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       setMessages([...messages, data]);
     });
 

@@ -24,7 +24,6 @@ const Profile = () => {
         console.log("Error inside profile");
       });
   }, []);
-  // const photo=require(`../../tinder-backend/uploads/${user.profile}`).default;
 
   console.log(user);
   const logout = (e) => {

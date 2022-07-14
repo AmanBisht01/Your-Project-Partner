@@ -136,7 +136,7 @@ router.get("/login/:id", async (req, res) => {
     // main logic
     const x = users.filter((val) => {
       const val_id = val._id;
-      return val_id !== _id;
+      return val_id != _id;
       // return !user.liked[val_id] && val_id != _id;
     });
 
