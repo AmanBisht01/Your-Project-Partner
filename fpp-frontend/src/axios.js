@@ -1,22 +1,17 @@
-import axios from 'axios'
+import axios from "axios";
 
-const port=process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
-const app=process.env.NODE_ENV;
-let url='';
-if(app==='development'){
-    url=`http://localhost:${port}`
-
-}
-else{
-    url=`https://findprojectpartner.herokuapp.com`
-    
+const app = process.env.NODE_ENV;
+let url = "";
+if (app === "development") {
+  url = `http://localhost:${port}`;
+} else {
+  url = `https://yourprojectpartner.herokuapp.com/`;
 }
 
-const instance=axios.create({
+const instance = axios.create({
+  baseURL: url,
+});
 
-    baseURL:url
-})
-
-
-export default instance
+export default instance;
