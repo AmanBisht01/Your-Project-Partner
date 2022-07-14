@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 import Pusher from "pusher";
+import dotenv from "dotenv";
 
-const mongoUrl =
-  "mongodb+srv://aman:aman@cluster0.v3g1r.mongodb.net/FPP?retryWrites=true&w=majority";
+dotenv.config();
+
+const mongoUrl = process.env.MONGO_URL;
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
@@ -15,10 +17,10 @@ mongoose
 const db = mongoose.connection;
 
 const pusher = new Pusher({
-  appId: "1437079",
-  key: "63390f503a0e27874464",
-  secret: "52351d8662222db362a5",
-  cluster: "mt1",
+  appId: process.env.appId,
+  key: process.env.key,
+  secret: process.env.secret,
+  cluster: process.env.cluster,
   useTLS: true,
 });
 
