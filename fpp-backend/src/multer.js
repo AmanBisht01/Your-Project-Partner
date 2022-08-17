@@ -1,4 +1,3 @@
-// const multer=require('multer')
 import multer from "multer";
 import path from "path";
 
